@@ -17,3 +17,7 @@ anxious student
 radial gradient on the head. yellow to blue
 bezier curve for wobbly lopsided smile and two curved worried eyebrows
 built as planned!
+
+## Decision!
+
+Chose branch C because color and curve face were readable and coherent while portrait spun!
