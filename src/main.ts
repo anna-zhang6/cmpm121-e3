@@ -1,11 +1,17 @@
 const portrait = document.querySelector<HTMLDivElement>("#portrait")!;
 const spin = document.querySelector<HTMLButtonElement>("#spin")!;
 
+import hatUrl from "./assets/top-hat.svg?no-inline";
+import starUrl from "./assets/star.svg?no-inline";
+
 // The prototype grew inline. Keep it this way until the refactoring checkpoint.
 const face = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 face.setAttribute("viewBox", "0 0 200 200");
 face.setAttribute("role", "img");
-face.setAttribute("aria-label", "A neutral face");
+face.setAttribute(
+  "aria-label",
+  "A neutral face in a small purple top hat with a hand-drawn star on its cheek",
+);
 
 const head = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
 head.setAttribute("cx", "100");
@@ -58,6 +64,26 @@ mouth.setAttribute("stroke", "#302c29");
 mouth.setAttribute("stroke-width", "4");
 mouth.setAttribute("stroke-linecap", "round");
 face.append(mouth);
+
+// Image credits: top-hat.svg and star.svg (src/assets/) are my own
+// drawings, made with Sketchpad (sketch.io). No third-party material.
+function addImage(href: string, attrs: Record<string, string | number>) {
+  const image = document.createElementNS("http://www.w3.org/2000/svg", "image");
+  image.setAttribute("href", href);
+  for (const [name, value] of Object.entries(attrs)) {
+    image.setAttribute(name, String(value));
+  }
+  face.append(image);
+}
+
+addImage(hatUrl, {
+  x: 73,
+  y: 6,
+  width: 54,
+  height: 46,
+  transform: "rotate(-8 100 40)",
+});
+addImage(starUrl, { x: 132, y: 108, width: 15, height: 27 });
 
 portrait.append(face);
 
